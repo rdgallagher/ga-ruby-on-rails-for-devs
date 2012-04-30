@@ -14,7 +14,12 @@ Add a `squared_euclidean_distance` method to the `Hash` class that takes another
 class Hash
 
   def self.squared_euclidean_distance(lhs, rhs)
-    # TODO
+
+    # For each key of both hashes, calculate the squared difference in the values
+    differences = lhs.keys.concat(rhs.keys).uniq.map{ |key| (((lhs.has_key? key)? lhs[key] : 0) - ((rhs.has_key? key)? rhs[key] : 0))**2 }
+
+    # Sum squared differences
+    if differences.empty? then 0 else differences.inject(:+) end
   end
 
   def squared_euclidean_distance(rhs)
