@@ -29,4 +29,5 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'fabrication'
   gem 'awesome_print'
+  gem 'fuubar'
 end
