@@ -1,3 +1,8 @@
+# Simplecov must come first here
+require 'simplecov'
+SimpleCov.start
+
+# Rest of spec helper now starts here
 require 'rubygems'
 require 'spork'
 
