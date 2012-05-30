@@ -18,4 +18,5 @@ group :development, :test do
   gem "spork"
   gem "simplecov", require: false
   gem "shoulda-matchers"
+  gem "ffaker"
 end
