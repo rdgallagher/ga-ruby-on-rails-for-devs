@@ -15,6 +15,8 @@ describe Employee do
 
   context "associations" do
     it { should belong_to :role }
+    it { should have_many :employee_projects }
+    it { should have_many(:projects).through(:employee_projects) }
   end
 
   context "fabricators" do
