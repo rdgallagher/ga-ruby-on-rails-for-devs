@@ -38,5 +38,10 @@ feature "Things", js: true do
     Thing.count.should == 0
   end
 
+  scenario "can not be found" do
+    visit "/things/1"
+    page.should have_content 'not found'
+  end
+
 end
 

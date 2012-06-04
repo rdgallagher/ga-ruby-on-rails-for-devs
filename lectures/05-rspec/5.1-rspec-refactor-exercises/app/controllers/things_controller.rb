@@ -1,15 +1,15 @@
 class ThingsController < ApplicationController
 
+  before_filter :find_thing, only: [ :show, :edit, :update, :destroy ]
+
   def index
     @things = Thing.all
   end
   
   def show
-    @thing = Thing.find(params[:id])
   end
 
   def edit
-    @thing = Thing.find(params[:id])
   end
         
   def new
@@ -26,7 +26,6 @@ class ThingsController < ApplicationController
   end
   
   def update
-    @thing = Thing.find(params[:id])
     if @thing.update_attributes(params[:thing])
       redirect_to @thing, notice: "Thing was successfully updated."
     else
@@ -35,9 +34,15 @@ class ThingsController < ApplicationController
   end
   
   def destroy
-    @thing = Thing.find(params[:id])
     @thing.destroy
     redirect_to things_url
   end
 
+  def find_thing
+    begin
+      @thing = Thing.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      render file: '/Users/littlebear/Documents/RfD/ga-ruby-on-rails-for-devs/lectures/05-rspec/5.1-rspec-refactor-exercises/public/404.html', status: :not_found
+    end
+  end
 end
