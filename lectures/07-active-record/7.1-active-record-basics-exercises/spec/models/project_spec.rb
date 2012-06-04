@@ -9,8 +9,6 @@ describe Project do
 
   context "validations" do
     it { should validate_presence_of :name }
-    it { should validate_presence_of :employees_count }
-    it { should validate_numericality_of :employees_count }
   end
 
   context "associations" do
@@ -21,13 +19,11 @@ describe Project do
   context "callbacks" do
     describe "before validation" do
       before(:each) do
-        @project = Project.create!(name: 'Test Project', employees_count: 0)
+        @project = Project.create!(name: 'Test Project')
       end
 
       it "should update employee count" do
-        pending "saving project not changing employee count"
-        @project.employees[0] = Fabricate(:employee)
-        expect {@project.save!}.to change{@project.employees_count}.by(1)
+        expect {@project.employees << Fabricate(:employee)}.to change{@project.employees_count}.by(1)
       end
     end
   end
