@@ -10,6 +10,7 @@ describe Project do
   context "validations" do
     it { should validate_presence_of :name }
     it { should validate_presence_of :employees_count }
+    it { should validate_numericality_of :employees_count }
   end
 
   context "associations" do
