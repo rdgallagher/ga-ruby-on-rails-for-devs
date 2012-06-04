@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "A Thing" do
+describe Thing do
   
   context "with a name" do
     
@@ -15,11 +15,16 @@ describe "A Thing" do
     end
     
     it "can be persisted" do
-      thing.name = "Name"
       thing.save.should be_true
       Thing.count.should == 1
     end
-    
+
+  end
+
+  context "with validations" do
+    before { Fabricate(:thing).save! }
+    it { should validate_presence_of :name }
+    it { should validate_uniqueness_of :name }
   end
 
 end
